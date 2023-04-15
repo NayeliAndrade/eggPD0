@@ -1,0 +1,71 @@
+Algoritmo sin_titulo
+	Definir m, n1, n2, i ,j Como Entero
+	Escribir "Ingrese cuantos productos desea ingresar"
+	Leer n2
+	n2 = n2 + 1
+	n1 = 5
+	Dimension m[n1, n2]
+	inicializar(m, n1, n2)
+	obtenerArray(m, n1, n2)
+FinAlgoritmo
+
+Funcion inicializar(m Por Referencia, n1, n2)
+	Definir i, j Como Entero
+	Para i=0 Hasta n1-1
+		Para j=0 Hasta n2-1
+			m[i, j] = Aleatorio(10, 99)
+		FinPara
+	FinPara
+FinFuncion
+
+Funcion obtenerArray(arreglo, n1, n2)
+	Definir i, j, aux1, aux2 Como Entero
+	Para i=0 Hasta n1
+		Escribir obtenerDia(i) Sin Saltar
+	FinPara
+	Escribir "Total"
+	Escribir "_____________________________________________________________|_____|"
+	Para j=0 Hasta n2-2
+		aux1 = 0
+		Escribir "Producto ", j+1, "| " Sin Saltar
+		Para i=0 Hasta n1-1
+			aux1 = aux1 + arreglo[i, j]
+			Escribir "   ", arreglo[i,j], "    |" Sin Saltar
+			//arreglo[n2 - 1, j] = arreglo[n2 - 1, j] + arreglo[i, j]
+		FinPara
+		Escribir " ", aux1, " |"
+		Escribir ""
+		Escribir "_____________________________________________________________|_____|"
+	FinPara
+	
+	Para i=0 Hasta n1-1
+		aux1 = 0
+		Para j=0 Hasta n2-1
+			Escribir i, " == ", j
+			//Escribir arreglo[i, j]
+			Si  j < n2-1 Y arreglo[i, j] > aux1 Entonces
+				aux1 = arreglo[i, j]
+				arreglo[i, n2-1] = j
+			FinSi
+		FinPara
+		Si i == 0 Y j == n2  Entonces
+			Escribir "Mejor     |"Sin Saltar
+		FinSi
+		Si j == n2 Entonces
+			Escribir "Producto", arreglo[i, n2-1], " |" Sin Saltar
+		FinSi
+	FinPara
+FinFuncion
+
+Funcion res <- obtenerDia(n)
+	Definir res Como Cadena
+	Segun n Hacer
+		0: res = "          |"
+		1: res = "Lunes     |"
+		2: res = "Martes   |"
+		3: res = "Miercoles|"
+		4: res = "Jueves   |"
+		5: res = "Viernes  |"
+	FinSegun
+FinFuncion
+	

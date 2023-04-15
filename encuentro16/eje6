@@ -1,0 +1,133 @@
+//Una matriz mágica es una matriz cuadrada (tiene igual número de filas que de columnas) que
+//tiene como propiedad especial que la suma de las filas, las columnas y las diagonales es igual.
+//Por ejemplo:
+	//2 7 6
+	//9 5 1
+	//4 3 8
+//En la matriz de ejemplo las sumas son siempre 15. Considere el problema de construir un
+//algoritmo que compruebe si una matriz de datos enteros es mágica o no, y en caso de que
+//sea mágica escribir la suma. Además, el programa deberá comprobar que los números
+//introducidos son correctos, es decir, están entre el 1 y el 9. El usuario ingresa el tamaño de la
+//matriz que no debe superar orden igual a 10.
+
+Algoritmo ejer6
+	
+	definir arreglo, n Como Entero
+	
+	repetir
+		escribir sin saltar 'Ingrese el tamano de la matriz deseada' 
+		Leer n
+	mientras que n>10 
+	
+	dimension arreglo(n,n)
+	
+	ingresoMatriz(arreglo,n,n)
+	matrizMagica(arreglo,n,n)
+	
+FinAlgoritmo
+
+
+///
+SubProceso ingresoMatriz(arreglo por referencia,n,m)
+	
+	definir i,j Como Entero
+	
+	para i=0 Hasta n-1 Hacer
+		Para j=0 Hasta m-1 Hacer
+			repetir 
+				escribir sin saltar 'Ingresar numero dentro de la matriz entre 1 y 9'
+				leer arreglo[i,j]
+			 mientras que arreglo[i,j] < 1 o arreglo[i,j] >9
+		FinPara
+	FinPara
+	
+	para i= 0 Hasta n-1 Hacer
+		Para j=0 Hasta m-1 Hacer
+			Escribir "[" arreglo[i,j] "]" Sin Saltar
+		FinPara
+		escribir ''
+	FinPara
+	
+FinSubProceso
+
+
+///
+subproceso matrizMagica(arreglo por referencia,n,m)
+	
+	definir i, j, k, suma, suma1, suma2, sumaFilas, sumaCol, sumaDiag1, sumaDiag2 como entero
+	suma=0
+	k=0
+	
+	//Filas
+	Repetir
+		suma = 0
+		para i=k Hasta k Hacer
+			Para j=0 Hasta m-1 Hacer
+				suma = suma + arreglo[i,j]
+			FinPara
+			suma1=suma
+		FinPara
+		suma = 0
+		para i=k+1 Hasta k+1 Hacer
+			Para j=0 Hasta m-1 Hacer
+				suma = suma + arreglo[i,j]
+			FinPara
+			suma2=suma
+		FinPara
+		
+		k=k+1
+	mientras que k<n-1 y suma1 = suma2
+	sumaFilas = suma2
+	k=0
+	
+	//Columnas
+	Repetir
+		suma = 0
+		para j=k Hasta k Hacer
+			Para i=0 Hasta m-1 Hacer
+				suma = suma + arreglo[i,j]
+			FinPara
+			suma1=suma
+		FinPara
+		suma = 0
+		para j= k+1 Hasta k+1 Hacer
+			Para i=0 Hasta m-1 Hacer
+				suma = suma + arreglo[i,j]
+			FinPara
+			suma2=suma
+		FinPara
+		
+		k=k+1
+	mientras que k<n-1 y suma1 = suma2
+	sumaCol = suma2
+	
+	//Diagonales
+		suma = 0
+		para i= 0 Hasta n-1 Hacer
+			Para j=0 Hasta m-1 Hacer
+				si i=j Entonces
+					suma = suma + arreglo[i,j]
+				FinSi
+			FinPara
+			sumaDiag1=suma
+		FinPara
+		suma = 0
+		para i= 0 Hasta n-1 Hacer
+			Para j=0 Hasta n-1 Hacer
+				si j=n-i-1 entonces   
+					suma = suma + arreglo[i,j]
+				FinSi
+			FinPara
+			sumaDiag2=suma
+		FinPara
+	
+	si sumaFilas<>sumaCol o sumaCol<>sumaDiag1 o sumaDiag1<>sumaDiag2 Entonces
+		escribir 'La matriz NO es Magica'
+	SiNo
+		escribir 'La matriz SI es Magica'
+	FinSi
+	
+FinSubProceso
+
+
+	
